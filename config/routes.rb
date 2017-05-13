@@ -14,8 +14,14 @@ Rails.application.routes.draw do
 
   resources :blogs
 
-  resources :posts
-  
+  resources :posts, except: [:show]
+
+  get 'posts/*missing', to: 'posts#missing'
+
+  get 'qmark/:else', to:'qmark#else'
+
+  get 'qmark/:else/:something', to: 'qmark#else'
+
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
